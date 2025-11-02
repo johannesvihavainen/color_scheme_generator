@@ -1,0 +1,84 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ebebeb;
+}
+.dark-mode {
+    background-color: hsl(240, 8%, 16%);
+}
+
+.selectors {
+    margin-bottom: 1.5em;
+    padding: 2em;
+    display: flex;
+    gap: 0.5em;
+    justify-content: space-between;
+}
+
+.selectors input {
+    height: 5vh;
+    width: 30%;
+}
+
+.selectors select {
+    width: 100%;
+    height: 5vh;
+}
+
+.selectors button {
+    width: 60%;
+    height: 5vh;
+}
+
+.colors-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.colors-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.color-block {
+    flex: 1;
+    height: 500px;
+}
+
+.hex-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.dark-mode .hex-row {
+    color: #fff;
+}
+
+.hex-code {
+    flex: 1;
+    text-align: center;
+    font-family: monospace;
+    padding: 0.5rem 0;
+}
+
+.button-container {
+    padding: 2em;
+}
+
+#change-bg {
+    width: 100%;
+    padding: 1em;
+}
