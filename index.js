@@ -1,55 +1,46 @@
-const picker = document.getElementById('colorPicker')
-const value = document.getElementById('colorValue')
-const select = document.getElementById('modeSelect')
-const getColorSchemeBtn = document.getElementById('btn')
-const colorsContainer = document.getElementById('colors-container')
-const toggleBackgroundBtn = document.getElementById('change-bg')
-
-toggleBackgroundBtn.addEventListener('click', toggleBackground)
-
-function toggleBackground() {
-document.body.classList.toggle('dark-mode')
-document.documentElement.classList.toggle('dark-mode')
-}
-
-select.addEventListener('change', function () {
-    console.log(select.value)
-})
+const getColorSchemeBtn = document.getElementById('get-color-scheme')
+const colorSchemePicker = document.getElementById('color-scheme-picker')
+const colorContainer = document.getElementById('color-container')
+const input = document.getElementById('color-input')
+const toggleBackgroundBtn = document.querySelector('.toggle-bg')
 
 getColorSchemeBtn.addEventListener('click', fetchFromApi)
 
+toggleBackgroundBtn.addEventListener('click', function() {
+    document.documentElement.classList.toggle('dark-bg')
+    document.body.classList.toggle('dark-bg')
+    getColorSchemeBtn.classList.toggle('dark-btn')
+    toggleBackgroundBtn.classList.toggle('dark-btn')
+})
+
 function fetchFromApi() {
-    const baseColor = picker.value.slice(1)
-    const mode = select.value
-    fetch(`https://www.thecolorapi.com/scheme?hex=${baseColor}&mode=${mode}&count=6&format=json`)
+    fetch(`https://www.thecolorapi.com/scheme?hex=${input.value.slice(1)}&format=json&mode=${colorSchemePicker.value}&count=6`)
         .then(res => res.json())
         .then(data => {
+            if (colorContainer.hasChildNodes()) {
+                colorContainer.innerHTML = ''
+            }
             console.log(data)
 
-            colorsContainer.innerHTML = ''
-
-            const colorsRow = document.createElement('div')
-            colorsRow.classList.add('colors-row')
-
-            const hexRow = document.createElement('div')
-            hexRow.classList.add('hex-row')
+            const container = document.createElement('div')
+            const colors = document.createElement('img')
 
             data.colors.forEach(color => {
-                const block = document.createElement('div')
-                block.classList.add('color-block')
-                block.style.backgroundColor = color.hex.value
-                colorsRow.appendChild(block)
-
-                const hex = document.createElement('p')
-                hex.classList.add('hex-code')
-                hex.textContent = color.hex.value
-                hexRow.appendChild(hex)
+                const singleColor = document.createElement('div')
+                singleColor.style.backgroundColor = color.hex.value
+                singleColor.classList.add('single-color')
+                const singleColorContainer = document.createElement('div')
+                singleColorContainer.classList.add('single-color-container')
+                const hexValue = document.createElement('p')
+                hexValue.innerHTML = color.hex.value
+                hexValue.classList.add('hex-value')
+                singleColorContainer.appendChild(singleColor)
+                singleColorContainer.appendChild(hexValue)
+                container.appendChild(singleColorContainer)
+                container.classList.add('container')
+                colorContainer.appendChild(container)
             })
-
-            colorsContainer.appendChild(colorsRow)
-            colorsContainer.appendChild(hexRow)
         })
 }
-
 
 fetchFromApi()

@@ -9,10 +9,9 @@
 </head>
 
 <body>
-    <div class="selectors">
-        <input type="color" id="colorPicker" value="#ff0000">
-
-        <select id="modeSelect">
+    <nav>
+        <input type="color" id="color-input" value="#7c0303">
+        <select name="color-scheme-picker" id="color-scheme-picker">
             <option value="monochrome">Monochrome</option>
             <option value="monochrome-dark">Monochrome-dark</option>
             <option value="monochrome-light">Monochrome-light</option>
@@ -21,12 +20,12 @@
             <option value="analogic-complement">Analogic-complement</option>
             <option value="triad">Triad</option>
         </select>
-        <button id="btn">Get color scheme</button>
+        <button id="get-color-scheme">Get color scheme</button>
+    </nav>
+    <section id="color-container"></section>
+    <div class="button-container">
+        <button class="toggle-bg">Toggle BG color</button>
     </div>
-    <section id="colors-container"></section>
-    <section class="button-container">
-        <button id="change-bg">Toggle BG color</button>
-    </section>
     <script src="index.js"></script>
 </body>
 
