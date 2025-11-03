@@ -6,11 +6,15 @@ const toggleBackgroundBtn = document.querySelector('.toggle-bg')
 
 getColorSchemeBtn.addEventListener('click', fetchFromApi)
 
-toggleBackgroundBtn.addEventListener('click', function() {
+toggleBackgroundBtn.addEventListener('click', function () {
     document.documentElement.classList.toggle('dark-bg')
     document.body.classList.toggle('dark-bg')
     getColorSchemeBtn.classList.toggle('dark-btn')
     toggleBackgroundBtn.classList.toggle('dark-btn')
+    const hexValue = document.querySelectorAll('.hex-value')
+    hexValue.forEach(text => {
+        text.classList.toggle('toggle-text')
+    })
 })
 
 function fetchFromApi() {
@@ -20,7 +24,6 @@ function fetchFromApi() {
             if (colorContainer.hasChildNodes()) {
                 colorContainer.innerHTML = ''
             }
-            console.log(data)
 
             const container = document.createElement('div')
             const colors = document.createElement('img')

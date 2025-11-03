@@ -80,12 +80,16 @@ nav button {
 }
 .dark-bg {
     background-color: hsl(0, 0%, 23%);
+    color: #fff;
 }
 .dark-btn {
     background-color: white;
     color: rgb(48, 48, 48);
 }
 
+.toggle-text {
+    color: #fff;
+}
 
 @media (min-width: 2000px) {
     nav {
